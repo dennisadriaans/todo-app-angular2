@@ -1,0 +1,38 @@
+<div class="small-3 column">
+
+    <div class="filter">
+        <h2>Projecten</h2>
+        <div>
+            <ul class="projects">
+                <li *ngFor="#project of projects">
+                    <span class="color {{project.color}}"></span>
+                    <div class="link" (click)="changeProject(project)">{{ project.title }}</div>
+                    <!-- <div class="link" [routerLink]="['/TodoList', {projectId: project.id}]">{{ project.title }}</div> -->
+                </li>
+            </ul>
+        </div>
+
+        <form>
+            <ul *ngIf="addProjectWindow" class="inline-list">
+                <input type="text" [(ngModel)]="newProject.title">
+                <li>
+                    <a>Anuleren</a>
+                </li>
+                <li>
+                    <button type="submit" class="button tiny" (click)="addProject(projects, newProject)">
+                        Opslaan
+                    </button>
+                </li>
+            </ul>
+        </form>
+        <li (click)="openAddProject()">Project toevoegen</li>
+    </div>
+</div>
+
+<div class="small-7 column">
+    <tasks [project]="project"></tasks>
+</div>
+
+<div class="small-2 column">
+    123
+</div>

@@ -1,0 +1,31 @@
+<div id="invoice-wrapper">
+    <div (click)="closeOverlay()" class="close-overlay">
+
+    </div>
+    <div class="open-items">
+        <h3>Selecteer taken<span class="blue">.</span></h3>
+
+        <hr>
+
+        <ul>
+            <li *ngFor="#todo of project.todos | filterByInvoiced:invoiced; #i = index" [ngClass]="{ active: todo.selected }">
+                <span class="done" *ngIf="todo.done">Done</span>
+                <a href="">{{todo.title}}</a>
+                <div class="right">
+                    <img src="/img/icons/arrow-pointing-to-right.svg" (click)="addTodoInvoiceList(project, todo)"/>
+                </div>
+            </li>
+        </ul>
+
+        <div class="todo-count">
+            {{invoiceList.length}} taken toegevoegd
+        </div>
+
+        <div class="bottom">
+            <hr>
+            <button class="small no-bg left">Ga terug</button>
+            <button (click)="saveInvoice(invoiceList)" class="small">Opslaan</button>
+            <button class="small no-bg">Annuleren</button>
+        </div>
+    </div>
+</div>

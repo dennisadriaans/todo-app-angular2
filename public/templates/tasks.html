@@ -1,0 +1,73 @@
+<div class="task-list">
+    <h2 [routerLink]="['/Bookkeeping', {id: 1}]">{{ project.title }}</h2>
+
+    <ul>
+        <div class="small-12 column list-heading">
+            <span class="hash">#</span>  Omschrijving
+        </div>
+
+        <li *ngFor="#todo of project.todos | filterByDone:done; #i = index" [ngClass]="{ active: todo.selected }">
+            <div class="small-11 column">
+                <input (click)="markDone(project, todo)" type="checkbox">
+                <a [routerLink]="['/TaskDetail', {id: todo.id}]">{{ todo.title }}</a>
+            </div>
+
+            <div class="small-1 column">
+                <div (click)="toggleEditTodoWindow(i)" class="close-pop-up" id="cpu-{{i}}"></div>
+                <div (click)="toggleEditTodoWindow(i)" class="trigger-actions">
+                    <img src="/img/icons/interface.svg" alt="">
+                </div>
+            </div>
+            <!-- edit pop up -->
+            <div class="action-group idx" id="idx-{{i}}">
+                <ul class="action-list">
+                    <li>
+                        <label>Schedule</label>
+                        <a>Morgen</a>
+                        <a>Overmorgen</a>
+                        <a>Volgende week</a>
+                    </li>
+                    <li class="priority">
+                        <label>Priority</label>
+                        <a>3</a>
+                        <a>2</a>
+                        <a>1</a>
+                    </li>
+                    <li>
+                        <label>Mark</label>
+                        <a (click)="markPrio(project, todo)" class="danger">First prio</a>
+                        <a (click)="markDone(project, todo)" class="danger">Done</a>
+                    </li>
+                    <li class="remove">
+                        <button (click)="Delete(project, todo)" class="remove">
+                            Verwijder item
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+
+    <a *ngIf="!showTodoInput" (click)="openAddTodo(project.id)" class="add-item-trigger">Item toevoegen</a>
+
+    <form *ngIf="showTodoInput">
+        <div class="todoInput" *ngIf="showTodoInput">
+            <input type="text" [(ngModel)]="newTodo.title">
+        </div>
+
+        <div class="small-2 column">
+            <div class="row">
+                <button type="submit" (click)="addTodo(project, newTodo)" class="tiny">Opslaan</button>
+            </div>
+        </div>
+
+        <div class="small-10 column">
+            <div class="row">
+                <a class="cancel-item-trigger" (click)="closeAddTodo()">Annuleren</a>
+            </div>
+        </div>
+    </form>
+
+    <span class="hide" myHighLight>Highlight me!</span>
+
+</div>

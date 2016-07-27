@@ -1,0 +1,31 @@
+<div class="invoices">
+    <img class="search" src="/img/icons/search.svg" alt="">
+    <input type="text" placeholder="Zoek in contacten">
+    <ul class="card">
+        <li *ngFor="#invoice of invoices">
+            <div class="small-6 column date">
+                <img src="/img/icons/more.svg" alt="">
+                13 juni 2016
+            </div>
+            <div class="small-3 column">
+                <label>
+                    Soort:
+                    <h4>Ontwikkeling</h4>
+                </label>
+            </div>
+            <div class="small-3 column">
+                <label>
+                    Start datum:
+                    <h4>14-06-2016</h4>
+                </label>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<button class="no-bg tiny right" (click)="createInvoice()">
+    Factuur maken
+</button>
+
+
+<make-invoice></make-invoice>
